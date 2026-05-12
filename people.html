@@ -22,11 +22,15 @@
 
         /* Header */
         header {
-            padding: 2rem 10%;
+            padding: 1.5rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--accent-color);
+            background-color: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
@@ -36,6 +40,30 @@
         }
 
         .logo span { color: var(--accent-color); }
+
+        /* Stil pentru butonul Home */
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .home-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .home-link:hover {
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+        }
 
         /* Galerie Grid */
         .gallery-container {
@@ -102,13 +130,14 @@
         .section-title h2 {
             font-size: 3rem;
             text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
         .yellow-line {
             width: 80px;
             height: 5px;
             background: var(--accent-color);
-            margin: 0 auto;
+            margin: 10px auto 0;
         }
     </style>
 </head>
@@ -116,10 +145,15 @@
 
     <header>
         <div class="logo">R<span>M</span>N</div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#" class="index.html">Home</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="section-title">
-        <h2>Portfolio <span></span></h2>
+        <h2>Portfolio</h2>
         <h3>People</h3>
         <div class="yellow-line"></div>
     </div>
