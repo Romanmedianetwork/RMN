@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #0575e6, #021b79);
+            /* Fundal negru cu un gradient subtil */
+            background: radial-gradient(circle, #1a1a1a, #000000);
             color: #fff;
             display: flex;
             justify-content: center;
@@ -17,40 +18,74 @@
             height: 100vh;
         }
         .container {
-            background-color: rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background-color: #111;
+            padding: 40px;
+            border-radius: 15px;
+            /* Border galben pentru evidențiere */
+            border: 2px solid #ffcc00;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
             text-align: center;
             max-width: 500px;
+            width: 90%;
         }
-        h1, p {
+        h1 {
+            color: #ffcc00; /* Titlu Galben */
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            margin-bottom: 25px;
+            color: #cccccc;
         }
         ul {
             list-style-type: none;
             padding: 0;
         }
         li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
         }
         .contact-info {
             font-size: 18px;
         }
+        /* Stiluri pentru link-uri */
         a {
+            color: #ffcc00;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        a:hover {
             color: #fff;
-            text-decoration: underline;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+        /* Un mic detaliu pentru etichete (Adress, Phone, Email) */
+        span.label {
+            color: #888;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Contact</h1>
-        <p>For any questions or requests, please contact us using the information below:      </p>
+        <p>Pentru orice întrebări sau solicitări, vă rugăm să ne contactați folosind informațiile de mai jos:</p>
         <ul class="contact-info">
-            <li>Adress: Romania</li>
-            <li>Phone: <a href="https://wa.me/+40752770173">+40 759 915 098</a></li>
-            <li>Email: <a href="mailto:roman.medianetwork@gmail.com">roman.medianetwork@gmail.com</a></li>
+            <li>
+                <span class="label">Adresă</span>
+                România
+            </li>
+            <li>
+                <span class="label">Telefon</span>
+                <a href="https://wa.me/+40752770173">+40 759 915 098</a>
+            </li>
+            <li>
+                <span class="label">Email</span>
+                <a href="mailto:roman.medianetwork@gmail.com">roman.medianetwork@gmail.com</a>
+            </li>
         </ul>
     </div>
 </body>
