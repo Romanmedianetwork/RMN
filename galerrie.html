@@ -3,54 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
+    <title>RMN - Foldere Media</title>
+    <!-- Importăm un font modern similar cu cel de pe site -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome pentru iconițe elegante -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            background-color: #000000; /* Fundal negru ca pe site */
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f0f0f0;
+            margin: 0;
         }
-        .gallery-container {
-            display: flex;
-            flex-wrap: wrap;
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 90%;
+            max-width: 1000px;
             padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            max-width: 90%;
         }
-        .gallery-container img {
-            height: 200px;
-            margin: 10px;
-            border-radius: 5px;
-            transition: transform 0.3s;
+
+        .folder-card {
+            background: #111111; /* Carduri gri foarte închis */
+            border: 1px solid #333333; /* Border discret */
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-        .gallery-container img:hover {
-            transform: scale(1.05);
+
+        /* Efect de hover ca pe site-urile premium */
+        .folder-card:hover {
+            border-color: #ffffff;
+            transform: translateY(-10px);
+            background: #161616;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+        }
+
+        .icon-wrapper {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        .folder-card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .folder-card p {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 10px;
+            text-transform: none;
+        }
+
+        /* Element decorativ discret (linie jos) */
+        .folder-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .folder-card:hover::after {
+            width: 40%;
         }
     </style>
 </head>
 <body>
-    <div class="gallery-container">
-        <img src="images/IMG_2719.jpg" alt="Poza 1">
-        <img src="images/IMG_2337.jpg" alt="Poza 2">
-        <img src="images/IMG_2735.jpg" alt="Poza 3">
-        <img src="images/IMG_2795.jpg" alt="Poza 4">
-        <img src="images/IMG_5092.jpg" alt="Poza 5">
-        <img src="images/IMG_5107.jpg" alt="Poza 6">
-        <img src="images/IMG_5122.jpg" alt="Poza 7">
-        <img src="images/IMG_5131.jpg" alt="Poza 8">
-        <img src="images/brad CLS.jpg" alt="Poza 9">
-        <img src="images/brad L.jpg" alt="Poza 10">
-        <img src="images/brad P.jpg" alt="Poza 11">
-        <img src="images/Centrala.jpg" alt="Poza 12">
-        <img src="images/dog.jpg" alt="Poza 13">
-        <img src="images/spider.jpg" alt="Poza 14">
+
+    <div class="grid-container">
+        <!-- People -->
+        <div class="folder-card">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h3>People</h3>
+            <p>Photo/video</p>
+        </div>
+
+        <!-- Cars -->
+        <div class="folder-card">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-car-side"></i>
+            </div>
+            <h3>Automobiles</h3>
+            <p>Photo/Video
+        </div>
+
+        <!-- Cites -->
+        <div class="folder-card">
+            <div class="icon-wrapper">
+                <i class="fa-solid fa-city"></i>
+            </div>
+            <h3>Cities</h3>
+            <p>Photo</p>
+        </div>
     </div>
+
 </body>
 </html>
