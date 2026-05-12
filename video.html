@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Video Gallery</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --accent-color: #FFD700;
+            --text-color: #ffffff;
+            --card-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-color);
+            background-color: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+        }
+
+        /* Titlu Sectiune */
+        .section-title {
+            text-align: center;
+            padding: 50px 10% 20px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .yellow-line {
+            width: 80px;
+            height: 5px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        /* Video Grid */
+        .video-container {
+            padding: 2rem 10% 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .video-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: all 0.4s ease;
+        }
+
+        .video-item:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* Aspect Ratio 16:9 */
+        }
+
+        .video-wrapper video,
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h3 {
+            margin: 0 0 10px 0;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .video-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">R<span>M</span>N</div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="galerie.html" class="nav-link">Photos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section-title">
+        <h2>Cinematics</h2>
+        <h3>Automotive Video Portfolio</h3>
+        <div class="yellow-line"></div>
+    </div>
+
+    <main class="video-container">
+        
+        <!-- Video 1: MP4/Cloudinary -->
+        <div class="video-item">
+            <div class="video-wrapper">
+                <video controls poster="https://res.cloudinary.com/drakjql9w/image/upload/v1778613014/DSC07919_u4ygb2.jpg">
+                    <source src="URL_VIDEO_AICI.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video-info">
+                <h3>Mercedes Drift Session</h3>
+                <p>Editare cinematică 4K - Night Scenes</p>
+            </div>
+        </div>
+
+        <!-- Video 2: YouTube Embed Example -->
+        <div class="video-item">
+            <div class="video-wrapper">
+                <!-- Exemplu YouTube (înlocuiește link-ul) -->
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h3>BMW M4 Showcase</h3>
+                <p>Proiect realizat pentru Showroom-ul X</p>
+            </div>
+        </div>
+
+        <!-- Video 3: Alt video MP4 -->
+        <div class="video-item">
+            <div class="video-wrapper">
+                <video controls>
+                    <source src="URL_VIDEO_2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-info">
+                <h3>Rolling Shots</h3>
+                <p>Vibes de autostradă - Color Grading Gold</p>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
