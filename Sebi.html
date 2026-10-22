@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Filmul nunții</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: pagină editorială aliniată la stânga, nume mari pe două rânduri decalate,
+   film principal 16:9 lat, clipuri verticale 9:16 în grilă, subsol discret. */
+:root {
+  --bg: #FFFFFF;
+  --surface: #F7F5F2;
+  --fg: #2B2A28;
+  --muted: #7A766F;
+  --line: #E8E4DE;
+  --accent: #9A7B3F;
+  --frame: #F3F1ED;
+  --frame-fg: #8E8A82;
+  --font-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --font-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.wrap { max-width: 1160px; margin: 0 auto; }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(2.5rem, 6vw, 4.5rem); }
+.eyebrow {
+  font-size: .78rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 clamp(1.5rem, 4vw, 2.75rem);
+}
+.names {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(3.4rem, 12.5vw, 9.5rem); line-height: .92; letter-spacing: -.02em;
+  margin: 0; text-wrap: balance;
+}
+.names span { display: block; }
+.names .second { padding-left: clamp(1.5rem, 12vw, 9rem); }
+.names em { font-style: italic; color: var(--accent); font-weight: 400; margin-right: .12em; }
+
+.credits {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.5rem 2.5rem; margin: clamp(2.5rem, 6vw, 4rem) 0 0; padding: 1.5rem 0 0;
+  border-top: 1px solid var(--line);
+}
+.credits div { min-width: 0; }
+.credits dt { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.credits dd { margin: .3rem 0 0; font-family: var(--font-display); font-size: 1.3rem; line-height: 1.3; }
+.intro { max-width: 34rem; margin: 2.25rem 0 0; color: var(--muted); }
+
+/* ---------- Secțiuni ---------- */
+section { padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--line); }
+.sec-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: .5rem 2rem; margin-bottom: 1.75rem;
+}
+h2 {
+  font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 4.5vw, 3rem);
+  line-height: 1.1; margin: 0; text-wrap: balance;
+}
+.sec-note { margin: 0; color: var(--muted); max-width: 30rem; min-width: 0; }
+.specs {
+  font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 500;
+  color: var(--muted); font-variant-numeric: tabular-nums; margin: 0;
+}
+
+/* ---------- Player ---------- */
+.frame {
+  position: relative; width: 100%; max-width: 100%; background: var(--frame);
+  overflow: hidden; border-radius: 2px;
+}
+.frame.wide { aspect-ratio: 16 / 9; }
+.frame.tall { aspect-ratio: 9 / 16; }
+.frame iframe, .frame video {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--frame);
+}
+.placeholder {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1rem; color: var(--frame-fg);
+}
+.placeholder .play {
+  width: 3.6rem; height: 3.6rem; border: 1px solid currentColor; border-radius: 50%;
+  display: grid; place-items: center; opacity: .8;
+}
+.placeholder .play::before {
+  content: ""; border-style: solid; border-width: .5rem 0 .5rem .85rem;
+  border-color: transparent transparent transparent currentColor; margin-left: .2rem;
+}
+.placeholder .tc {
+  font-size: .72rem; letter-spacing: .22em; font-variant-numeric: tabular-nums; opacity: .6;
+}
+
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; margin-top: 1.25rem; }
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 500; font-size: .82rem;
+  letter-spacing: .16em; text-transform: uppercase; padding: .9rem 1.6rem;
+  border: 1px solid var(--fg); color: var(--fg); background: transparent;
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.btn:hover { background: var(--fg); color: var(--bg); }
+.btn.small { padding: .6rem 1.05rem; font-size: .72rem; }
+
+/* ---------- Clipuri ---------- */
+.clips {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+  gap: 2.25rem 1.5rem;
+}
+.clip { min-width: 0; display: flex; flex-direction: column; gap: .9rem; }
+.clip .frame { border-radius: 14px; }
+.clip h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; line-height: 1.25; margin: 0; }
+.clip .meta {
+  margin: .15rem 0 0; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums;
+}
+.clip .btn { align-self: flex-start; }
+
+/* ---------- Final ---------- */
+.closing { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2.5rem 4rem; }
+.closing p { margin: 0; }
+.thanks { font-family: var(--font-display); font-size: clamp(1.6rem, 3.6vw, 2.5rem); line-height: 1.25; text-wrap: balance; }
+.contact { color: var(--muted); }
+.contact strong { display: block; color: var(--fg); font-weight: 500; letter-spacing: .02em; margin-bottom: .35rem; }
+.contact span { display: block; overflow-wrap: anywhere; }
+footer {
+  border-top: 1px solid var(--line); padding-block: 1.75rem 2.5rem;
+  font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem;
+}
+
+@media (max-width: 720px) {
+  .closing { grid-template-columns: minmax(0, 1fr); }
+  .clips { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1rem; }
+}
+@media (max-width: 420px) {
+  .clips { grid-template-columns: minmax(0, 1fr); max-width: 280px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 class="names" id="names"></h1>
+    <dl class="credits" id="credits"></dl>
+    <p class="intro" id="intro"></p>
+  </header>
+
+  <section id="film">
+    <div class="sec-head">
+      <h2 id="film-title">Filmul nunții</h2>
+      <p class="specs" id="film-specs"></p>
+    </div>
+    <div id="film-player"></div>
+    <div class="actions" id="film-actions"></div>
+  </section>
+
+  <section id="clipuri">
+    <div class="sec-head">
+      <h2>Clipuri pentru social media</h2>
+      <p class="sec-note">Descărcați clipul direct pe telefon și încărcați-l în Instagram sau TikTok.</p>
+    </div>
+    <div class="clips" id="clips"></div>
+  </section>
+
+  <section id="final">
+    <div class="closing">
+      <p class="thanks" id="thanks"></p>
+      <div class="contact" id="contact"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span id="foot-studio"></span>
+    <span id="foot-year"></span>
+  </footer>
+
+</div>
+
+<script>
+/* =====================================================================
+   CONFIGURARE: aici schimbi tot conținutul paginii.
+   Numele, data și locația de mai jos sunt exemple, înlocuiește-le.
+
+   Pentru fiecare video pui în "url" linkul de share din cloud:
+     - Google Drive: linkul normal de share (…/file/d/ID/view), setat pe
+       "Oricine are linkul". Îl transform singur în player.
+     - YouTube / Vimeo (neinclus în listă sau nelistat): link normal.
+     - Fișier direct .mp4/.mov/.webm: se redă cu player-ul browserului.
+     - Alt cloud (OneDrive, pCloud, Dropbox): pune linkul de EMBED al lor.
+   "download" este linkul de descărcare (opțional). Dacă e gol, butonul dispare.
+   ===================================================================== */
+const CONFIG = {
+  studio: "Roman Media Network",
+  names: ["Sebastian", "Larisa"],
+  date: "13 septembrie 2026",
+  venue: "Slatina",
+  intro: "Aici găsiți filmul nunții voastre și clipurile pregătite pentru social media. Puteți viziona totul online sau descărca fișierele la calitate maximă.",
+  film: {
+    title: "Filmul nunții",
+    runtime: "1:25:17",
+    format: "4K · 16:9 · 21.7 Gb",
+    url: "https://youtu.be/P9oc4lhuz7o",
+    download: "https://www.idriveshare.com/app/share?shareToken=eyJhbGciOiJIUzI1NiJ9.eyJkb21haW4iOiJldnN3ZWI2NC5pZHJpdmVzeW5jLmNvbSIsInNoYXJlSWQiOiJSM0pMUVU0NVNHdG9Ua2M1UzB0MVUwTk1NMHBLZGpaQ1IyaHNjMnRpVDFKT1Z6Z3JOemhGUjAwMGFrTlpPVUoxZGtaUmMyNWlZVTVQVWt4UGExSndTdyIsInRva2VuIjoiZGg2V0xwcnZOc183MkVGeHNKaVdTR185SFVIc2dNb2JhMURmb0JOMDllaEVTUV9lRVZfSlhyWnJPeEdaNVdocnp4UG05XzNOUWdWY3VBM0dwczU0cFVDS2FpdlllSExaWDFNZmZjV2xRRmJTaDc4czVmZUxUV201cVdFRW5sWFNfciIsInN1YiI6Ijk4MDMwODU1YjU4MGNjMjkwYThkIiwiaWF0IjoxNzkyNzAxOTMxLCJpc3MiOiJpZHJpdmUtYXV0aC1zZXJ2aWNlIn0.O3-Hqez1Vv8s5VBB3g0MpS8G6TPjYwJtNZHEOkJmnbo"
+  },
+  clips: [
+    { title: "Teaser", platform: "Reels · TikTok", runtime: "0:45", url: "", download: "" },
+    { title: "Get groom and bride", platform: "Reels · TikTok", runtime: "0:30", url: "", download: "" },
+    { title: "Park", platform: "Reels · TikTok", runtime: "0:40", url: "", download: "" },
+    { title: "Sunset", platform: "Reels · TikTok", runtime: "0:35", url: "", download: "" }
+  ],
+  thanks: "Vă mulțumesc că m-ați lăsat să fiu parte din ziua voastră.",
+  contact: { email: "admin@romanmedianetwork.com", phone: "" }
+};
+
+/* ---------- Cod (nu trebuie modificat) ---------- */
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function $(id) { return document.getElementById(id); }
+
+function toEmbed(url) {
+  if (!url) return null;
+  var m;
+  m = url.match(/drive\.google\.com\/file\/d\/([^\/?#]+)/) || url.match(/drive\.google\.com\/open\?id=([^&#]+)/);
+  if (m) return { type: "iframe", src: "https://drive.google.com/file/d/" + m[1] + "/preview" };
+  m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([\w-]{11})/);
+  if (m) return { type: "iframe", src: "https://www.youtube-nocookie.com/embed/" + m[1] + "?rel=0" };
+  m = url.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-z0-9]+))?/);
+  if (m) return { type: "iframe", src: "https://player.vimeo.com/video/" + m[1] + (m[2] ? "?h=" + m[2] : "") };
+  if (/\.(mp4|mov|webm|m4v)(\?|#|$)/i.test(url)) return { type: "video", src: url };
+  return { type: "iframe", src: url };
+}
+
+function player(url, shape, label) {
+  var e = toEmbed(url);
+  var inner;
+  if (!e) {
+    inner = '<div class="placeholder"><div class="play"></div><div class="tc">00:00:00:00</div></div>';
+  } else if (e.type === "video") {
+    inner = '<video controls playsinline preload="metadata" src="' + esc(e.src) + '" title="' + esc(label) + '"></video>';
+  } else {
+    inner = '<iframe src="' + esc(e.src) + '" title="' + esc(label) + '" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+  }
+  return '<div class="frame ' + shape + '">' + inner + '</div>';
+}
+
+function dl(url, label, small) {
+  if (!url) return "";
+  return '<a class="btn' + (small ? " small" : "") + '" href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(label) + '</a>';
+}
+
+(function build() {
+  var c = CONFIG;
+  var n1 = c.names[0] || "", n2 = c.names[1] || "";
+  document.title = "Nunta " + n1 + (n2 ? " & " + n2 : "");
+
+  $("eyebrow").textContent = "Livrare video · " + c.date;
+  $("names").innerHTML = '<span>' + esc(n1) + '</span>' + (n2 ? '<span class="second"><em>&amp;</em>' + esc(n2) + '</span>' : "");
+
+  $("credits").innerHTML =
+    '<div><dt>Data</dt><dd>' + esc(c.date) + '</dd></div>' +
+    '<div><dt>Locația</dt><dd>' + esc(c.venue) + '</dd></div>' +
+    '<div><dt>Video</dt><dd>' + esc(c.studio) + '</dd></div>';
+  $("intro").textContent = c.intro;
+
+  $("film-title").textContent = c.film.title;
+  $("film-specs").textContent = "Durată " + c.film.runtime + " · " + c.film.format;
+  $("film-player").innerHTML = player(c.film.url, "wide", c.film.title);
+  $("film-actions").innerHTML = dl(c.film.download, "Descarcă filmul", false);
+
+  $("clips").innerHTML = c.clips.map(function (clip) {
+    return '<article class="clip">' +
+      player(clip.url, "tall", clip.title) +
+      '<div><h3>' + esc(clip.title) + '</h3>' +
+      '<p class="meta">' + esc(clip.runtime) + ' · ' + esc(clip.platform) + '</p></div>' +
+      dl(clip.download, "Descarcă", true) +
+      '</article>';
+  }).join("");
+
+  $("thanks").textContent = c.thanks;
+  var contact = '<strong>' + esc(c.studio) + '</strong>';
+  if (c.contact.email) contact += '<span><a href="mailto:' + esc(c.contact.email) + '">' + esc(c.contact.email) + '</a></span>';
+  if (c.contact.phone) contact += '<span>' + esc(c.contact.phone) + '</span>';
+  $("contact").innerHTML = contact;
+
+  $("foot-studio").textContent = c.studio;
+  $("foot-year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
